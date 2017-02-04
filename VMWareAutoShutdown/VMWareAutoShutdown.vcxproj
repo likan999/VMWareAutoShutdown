@@ -68,9 +68,6 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <PropertyGroup Label="UserMacros">
-    <VixDir>D:\Program Files (x86)\VMware\VMware VIX</VixDir>
-  </PropertyGroup>
   <PropertyGroup Label="UserMacros" Condition="'$(Platform)'=='Win32'">
     <GlogProjectId>{935c693f-3d7d-3919-88ea-30e14b338f0b}</GlogProjectId>
   </PropertyGroup>
@@ -93,16 +90,16 @@
     <ClCompile>
       <PreprocessorDefinitions>GLOG_NO_ABBREVIATED_SEVERITIES;GOOGLE_GLOG_DLL_DECL=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>
-        ..\..\External\glog\out\$(Platform)\include;
-        ..\..\External\gflags\out\$(Platform)\Include;
+        ..\externals\out\glog\$(Platform)\include;
+        ..\externals\out\gflags\$(Platform)\Include;
 		$(VixDir);
         %(AdditionalIncludeDirectories)
       </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>
-        ..\..\External\glog\out\$(Platform)\lib\glog.lib;
-        ..\..\External\gflags\out\$(Platform)\Lib\gflags_static.lib;
+        ..\externals\out\glog\$(Platform)\lib\glog.lib;
+        ..\externals\out\gflags\$(Platform)\Lib\gflags_static.lib;
 		shlwapi.lib;
 		ws2_32.lib;
         %(AdditionalDependencies)
