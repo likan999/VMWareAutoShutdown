@@ -54,7 +54,7 @@ std::pair<std::vector<char*>, std::vector<std::string>> ToArgv(int argc, const T
     std::vector<std::string> holder(argc);
     for (int i = 0; i < argc; i++) {
         holder[i] = ToString(argv[i]);
-        args[i] = &holder[i][0];
+        args[i] = const_cast<char*>(holder[i].c_str());
     }
     return { std::move(args), std::move(holder) };
 }
@@ -69,7 +69,7 @@ void HandleRunningVm(VixHandle jobHandle,
                      VixEventType eventType,
                      VixHandle moreEventInfo,
                      void *clientData) {
-    VLOG(1) << __FUNCTION__ << ": eventType=" << eventType;
+    VLOG(2) << __FUNCTION__ << ": eventType=" << eventType;
     if (eventType != VIX_EVENTTYPE_FIND_ITEM) {
         return;
     }
@@ -197,7 +197,7 @@ LRESULT CALLBACK EventHandler(
     _In_ UINT    msg,
     _In_ WPARAM  wParam,
     _In_ LPARAM  lParam) {
-    LOG(INFO) << std::hex
+    VLOG(2) << std::hex
         << "Message received: hWnd=0x" << (void*)hWnd << ", "
         << "msg=0x" << msg << ", "
         << "wParam=0x" << wParam << ", "
